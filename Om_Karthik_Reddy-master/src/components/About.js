@@ -118,12 +118,12 @@ const About = () => {
             items: ['Inventory Management', 'Demand Forecasting', 'Procurement', 'Strategic Negotiation', 'SAP', 'MRP', 'Logistics Optimization', 'JIT', 'JIS', 'Manufacturing Automation', 'BOM', 'Production Scheduling']
         },
         {
-            category: 'Process Improvement & Optimization',
-            items: ['Lean Manufacturing', 'Six Sigma', 'Kaizen', 'TQM', '5S', 'MUDA Analysis', 'Line Balancing', 'Workflow Analysis', 'Bottleneck Identification', 'Takt Time Calculation', 'Efficiency Improvement', 'Time & Motion Study (MOST)', 'Cost Modeling', 'Should Cost Analysis']
-        },
-        {
             category: 'Visualization & Analysis',
             items: ['Tableau', 'Statistical Analysis', 'Root Cause Analysis (RCA)', 'DMAIC', 'Value Stream Mapping (VSM)']
+        },
+        {
+            category: 'Process Improvement & Optimization',
+            items: ['Lean Manufacturing', 'Six Sigma', 'Kaizen', 'TQM', '5S', 'MUDA Analysis', 'Line Balancing', 'Workflow Analysis', 'Bottleneck Identification', 'Takt Time Calculation', 'Efficiency Improvement', 'Time & Motion Study (MOST)', 'Cost Modeling', 'Should Cost Analysis']
         }
     ];
 
