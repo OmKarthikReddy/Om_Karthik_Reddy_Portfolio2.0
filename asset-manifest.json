@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/om_karthik_reddy_portfolio2.0/static/css/main.fdf97e69.css",
-    "main.js": "/om_karthik_reddy_portfolio2.0/static/js/main.c199ab34.js",
+    "main.js": "/om_karthik_reddy_portfolio2.0/static/js/main.a6a0668f.js",
     "static/media/Grad_2.png": "/om_karthik_reddy_portfolio2.0/static/media/Grad_2.4df155eea754381e5f53.png",
     "static/media/Grad_3.png": "/om_karthik_reddy_portfolio2.0/static/media/Grad_3.aebb8bb77e721b41d946.png",
     "static/media/Grad_1.png": "/om_karthik_reddy_portfolio2.0/static/media/Grad_1.d06de0f95a51590e2dca.png",
@@ -25,10 +25,10 @@
     "static/media/pic08.jpg": "/om_karthik_reddy_portfolio2.0/static/media/pic08.c367fcfa8986fce5fd83.jpg",
     "index.html": "/om_karthik_reddy_portfolio2.0/index.html",
     "main.fdf97e69.css.map": "/om_karthik_reddy_portfolio2.0/static/css/main.fdf97e69.css.map",
-    "main.c199ab34.js.map": "/om_karthik_reddy_portfolio2.0/static/js/main.c199ab34.js.map"
+    "main.a6a0668f.js.map": "/om_karthik_reddy_portfolio2.0/static/js/main.a6a0668f.js.map"
   },
   "entrypoints": [
     "static/css/main.fdf97e69.css",
-    "static/js/main.c199ab34.js"
+    "static/js/main.a6a0668f.js"
   ]
 }
