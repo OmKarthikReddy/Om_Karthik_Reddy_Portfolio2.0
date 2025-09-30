@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "custom-deploy": "node pages.js"
+    
   },
   "engines": {
     "npm": "^8.11.0",
