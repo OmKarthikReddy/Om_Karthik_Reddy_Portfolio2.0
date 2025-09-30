@@ -11,178 +11,150 @@ const About = () => {
     const [error, setError] = useState(null);
 
     // Configure your GitHub username and repository names
-    const githubUsername = "vemuri02"; // Replace with your GitHub username
-    const repositoryNames = [
-        "Efficient-Vision-Transformer-for-Object-Recognition",
-        "Image-Translation-using-Self-Attention-GAN",
-        "Seismic-Image-Segmentation-using-UNet",
-        "Image-Generation-GANs",
-    ];
+    const githubUsername = "omkarthikreddy"; // Replace with your GitHub username
+    const repositoryNames = [];
+
 
     useEffect(() => {
-        fetchProjectsData();
+        // Since we are not fetching from github, we can just set the projects directly.
+        setProjectsData([
+            {
+                id: 1,
+                title: "Supply Chain Network Optimization & Resilience Strategy",
+                description: "Designed a cost-efficient supply chain by establishing a new distribution center, reducing inventory and transportation costs, and improving supplier diversification to boost profit margins by 15% during peak demand."
+            },
+            {
+                id: 2,
+                title: "HIL Testing for Battery Management System",
+                description: "Developed test cases, performed simulation modeling and automation using Simulink and NI VeriStand, and conducted safety compliance checks to ensure robust battery control logic validation."
+            },
+            {
+                id: 3,
+                title: "Sensor Integration and Validation in Powertrain Systems",
+                description: "Validated systems integrating sensors (temperature, pressure, encoder, resolver), ensuring signal accuracy and performance reliability across actuator modules under simulated test conditions."
+            },
+            {
+                id: 4,
+                title: "Lean Manufacturing & Workflow Optimization in SME",
+                description: "Implemented hybrid production methodology and root cause analysis, reducing equipment downtime by 14% and enhancing layout scalability in small-to-mid-size factory operations."
+            }
+        ]);
+        setLoading(false);
     }, []);
 
-    const fetchProjectsData = async () => {
-        try {
-            setLoading(true);
-            setError(null);
 
-            const projectPromises = repositoryNames.map(async (repoName, index) => {
-                try {
-                    // Fetch repository data
-                    const repoResponse = await fetch(`https://api.github.com/repos/${githubUsername}/${repoName}`);
-                    if (!repoResponse.ok) {
-                        throw new Error(`Failed to fetch ${repoName}: ${repoResponse.status}`);
-                    }
-                    const repoData = await repoResponse.json();
-
-                    // Fetch languages data
-                    const languagesResponse = await fetch(`https://api.github.com/repos/${githubUsername}/${repoName}/languages`);
-                    const languagesData = languagesResponse.ok ? await languagesResponse.json() : {};
-
-                    // Process languages data
-                    const totalBytes = Object.values(languagesData).reduce((sum, bytes) => sum + bytes, 0);
-                    const processedLanguages = Object.entries(languagesData).map(([name, bytes]) => ({
-                        name,
-                        percentage: totalBytes > 0 ? Math.round((bytes / totalBytes) * 100) : 0
-                    })).sort((a, b) => b.percentage - a.percentage);
-
-                    return {
-                        id: index + 1,
-                        title: repoData.name,
-                        description: repoData.description || 'No description provided',
-                        languages: processedLanguages,
-                        stars: repoData.stargazers_count,
-                        updatedDate: new Date(repoData.updated_at).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        }),
-                        htmlUrl: repoData.html_url,
-                        cloneUrl: repoData.clone_url,
-                        homepage: repoData.homepage
-                    };
-                } catch (error) {
-                    console.error(`Error fetching ${repoName}:`, error);
-                    return {
-                        id: index + 1,
-                        title: repoName,
-                        description: 'Error loading project data',
-                        languages: [],
-                        stars: 0,
-                        updatedDate: 'Unknown',
-                        htmlUrl: null,
-                        cloneUrl: null,
-                        homepage: null,
-                        error: true
-                    };
-                }
-            });
-
-            const projects = await Promise.all(projectPromises);
-            setProjectsData(projects);
-            setLoading(false);
-        } catch (err) {
-            setError(err.message);
-            setLoading(false);
-        }
-    };
 
     const education = [
         {
-            year: '2022 - Present',
-            title: 'PhD in Computer Science & Engineering',
-            institution: 'Illinois Institute of Technology',
-            description: 'Researching HW/SW co-design for ML/DL on edge devices, focusing on object detection, semantic segmentation, and LiDAR camera fusion for ADAS and autonomous driving.'
+            year: 'May 2024',
+            title: 'Master of Science in Industrial Engineering',
+            institution: 'Northeastern University, Boston, MA, USA',
+            description: "Graduate Certificate in Supply Chain Management, D'Amore McKim School of Business"
         },
         {
-            year: '2018 - 2022',
-            title: 'B.Tech in Computer Science and Engineering',
-            institution: 'Jawaharlal Nehru Technological University',
-            description: 'Completed undergraduate studies in Computer Science with focus on AI and machine learning applications.'
+            year: 'May 2022',
+            title: 'Bachelor of Technology in Mechanical and Industrial Design',
+            institution: 'Vellore Institute of Technology, Vellore, TN, India',
+            description: ''
         }
     ];
 
     const experience = [
         {
-            year: '2024 - Present',
-            title: 'Research and Teaching Assistant',
-            institution: 'Illinois Institute of Technology',
-            description: 'Working on model optimization using NAS, quantization, knowledge distillation, and pruning. TA for Hardware Acceleration for ML course covering GPUs, NPUs, and FPGAs.'
+            year: 'Jan 2022 - Jun 2022',
+            title: 'Supplier Quality Engineer',
+            institution: 'Mahindra and Mahindra, Assembly Plant, Zaheerabad, Hyd.',
+            description: [
+                'Tracked and analyzed supplier KPIs to identify quality gaps, driving improvement in supplier on-time delivery & defect rates.',
+                'Applied SPC, FMEA, and Six Sigma tools to reduce recurring non-conformances, and optimize supplier processes.',
+                'Created and updated control plans, inspection standards & compliance reports, aligning with internal & customer quality specifications.',
+                'Led cross-functional investigations with procurement, design, and manufacturing teams to resolve NCRs and enhance supplier accountability.',
+                'Analyzed component failures and production issues by conducting root cause analysis, proposing and implementing design modifications to improve product reliability.',
+                'Systematized engineering change notices (ECNs) and updated the Bill of Materials (BOM) to ensure all design revisions were accurately documented and communicated.'
+            ]
         },
         {
-            year: '2024 - 2025',
-            title: 'AI Research Intern',
-            institution: 'SoundSafe.ai',
-            description: 'Leading development of AI-driven audio security solutions, focusing on speech authentication and audio forensics using self-supervised learning.'
+            year: 'Mar 2021- Dec 2021',
+            title: 'Manufacturing & Supplier Quality Engineer',
+            institution: 'Satya Surya Aluminum Industries Ltd, Hyd.',
+            description: [
+                "Investigated supplier issues, reducing defect rates by analyzing trends with Six Sigma, SPC, and FMEA tools.",
+                "Installed proximity sensors on critical stations to prevent reverse-fit assembly errors (defect can't flow).",
+                "Partnered with cross-functional teams to validate supplier data packages, perform drawing markups, and ensure documentation matched internal and customer standards."
+            ]
         },
         {
-            year: '2020 - 2022',
-            title: 'AI Engineer Intern',
-            institution: 'Aster Ramesh Hospitals',
-            description: 'Developed deep learning models for medical image segmentation using YOLOv4, Faster R-CNN, and Mask R-CNN. Achieved 95% F1 score, 93% accuracy, and 90% precision in medical condition detection.'
-        },
-        {
-            year: '2018 - 2019',
-            title: 'Network Engineer Industrial Trainee',
-            institution: 'Sir C R Reddy Polytechnic',
-            description: 'Gained practical experience in TCP/IP, OSI model, subnetting, and network configuration. Worked with network security, firewall configurations, and VPN setups.'
+            year: 'Apr 2020 - Feb 2021',
+            title: 'Process Improvement & Quality Engineer',
+            institution: 'ACE Laser Tubing, Bangalore, India',
+            description: [
+                "Facilitated process improvement teams providing Lean tools such as Pareto charts, process flow charts, A3 Reports, basic statistics, control charts, and Daily Work Management (DWM).",
+                "Utilized SPC data to monitor the critical parameters and identify out of control conditions to stop and correct the machine.",
+                "Significantly reduced waste and end-to-end production time by leveraging expertise with Statistical Process Control (SPC) methodology, reduced machining defect rejection by closely monitoring the WIP.",
+                "Developed 3D layouts and fixture models in SolidWorks to support line upgrades and prototype evaluation, improving operator ergonomics and setup times."
+            ]
         }
     ];
 
     const skills = [
         {
-            category: 'Data Science & AI',
-            items: ['Image Classification', 'Object Detection', 'Semantic Segmentation', 'Feature Extraction', 'Augmentation']
+            category: 'Programming & Data Tools',
+            items: ['Python', 'Power BI', 'MATLAB/Simulink', 'NI VeriStand', 'CANalyzer', 'INCA', 'MDA', 'Microsoft Office Suite (Word, Excel, PowerPoint)']
         },
         {
-            category: 'Programming Languages',
-            items: ['Python', 'R', 'C++', 'Java', 'SQL', 'NoSQL', 'CUDA']
+            category: 'Design & Modeling Software',
+            items: ['SolidWorks', 'AutoCAD', 'CATIA', 'FUSION 360']
         },
         {
-            category: 'ML Frameworks & Tools',
-            items: ['PyTorch', 'TensorFlow', 'Keras', 'OpenCV', 'scikit-image', 'NLTK', 'LangChain', 'spaCy']
+            category: 'Engineering Principles',
+            items: ['GD&T', 'DFMEA/DFM/DFA/DFS', 'Functional Safety']
         },
         {
-            category: 'Big Data & Cloud',
-            items: ['AWS (S3, EC2, Glue, SageMaker, Lambda)', 'PySpark', 'Databricks', 'Hadoop', 'Apache Airflow', 'Azure']
+            category: 'Validation',
+            items: ['HIL Validation', 'Controls Validation', 'PLC Validation', 'Fault Injection', 'DTC Analysis']
         },
         {
-            category: 'Model Optimization',
-            items: ['Neural Architecture Search (NAS)', 'Pruning', 'Quantization', 'Knowledge Distillation']
+            category: 'Supply Chain & Operations',
+            items: ['Inventory Management', 'Demand Forecasting', 'Procurement', 'Strategic Negotiation', 'SAP', 'MRP', 'Logistics Optimization', 'JIT', 'JIS', 'Manufacturing Automation', 'BOM', 'Production Scheduling']
         },
         {
-            category: 'Generative AI',
-            items: ['Transformer Models', 'BERT', 'LLM', 'Reinforcement Learning', 'GANs', 'VAEs', 'Diffusion Models']
+            category: 'Process Improvement & Optimization',
+            items: ['Lean Manufacturing', 'Six Sigma', 'Kaizen', 'TQM', '5S', 'MUDA Analysis', 'Line Balancing', 'Workflow Analysis', 'Bottleneck Identification', 'Takt Time Calculation', 'Efficiency Improvement', 'Time & Motion Study (MOST)', 'Cost Modeling', 'Should Cost Analysis']
+        },
+        {
+            category: 'Visualization & Analysis',
+            items: ['Tableau', 'Statistical Analysis', 'Root Cause Analysis (RCA)', 'DMAIC', 'Value Stream Mapping (VSM)']
         }
     ];
 
     const certifications = [
         {
-            title: 'AWS Certified ML Specialist',
-            organization: 'Udemy',
-            description: 'Certified in Machine Learning Specialty demonstrating cloud ML expertise',
-            link: 'https://www.udemy.com/certificate/UC-69c3d313-4dd6-4923-b26d-ecadc4d24719/' // Replace with actual link
+            title: 'Lean Six Sigma Green Belt (CSSC, 2024)',
+            organization: '',
+            description: '',
+            link: ''
         },
         {
-            title: 'ML Certificate',
-            organization: 'Stanford University (Coursera)',
-            description: 'Completed comprehensive Machine Learning course from Stanford University',
-            link: 'https://www.coursera.org/account/accomplishments/certificate/TDB23JKME49P' // Replace with actual link
+            title: 'Procurement Professional Certificate (CSCMP, 2024)',
+            organization: '',
+            description: '',
+            link: ''
+        },
+        {
+            title: 'Product Design Engineer Mechanical (SSC/Q4201) (NASSCOM)',
+            organization: '',
+            description: '',
+            link: ''
         },
     ];
 
     const interests = [
-        'Hardware-Software Co-design',
-        'Edge AI & Mobile Applications',
-        'Medical Image Analysis',
-        'Audio Security & Forensics',
-        'Autonomous Driving Systems',
-        'Knowledge Distillation',
-        'Neural Architecture Search',
-        'Computer Vision',
-        'Natural Language Processing'
+        'Green Lean Six Sigma (GLSS)',
+        'Industry 4.0',
+        'Sustainable Supply Chain Management (SSCM)',
+        'Systematic Literature Review (SLR)',
+        'Blockchain',
+        'Digital Transformation'
     ];
 
     const publications = [
@@ -265,7 +237,7 @@ const About = () => {
                 <div className="section-header">
                     <h2 className="section-title">About Me</h2>
                     <p className="section-subtitle">
-                        PhD researcher specializing in Computer Vision, Edge AI, and Model Optimization
+                        Industrial Engineer specializing in Supply Chain Management and Operations Research
                     </p>
                 </div>
 
@@ -273,28 +245,20 @@ const About = () => {
                     {/* Personal Introduction */}
                     <div className="intro-section">
                         <div className="intro-text">
-                            <h3>Hello, I'm Sai Manohar Vemuri</h3>
-                            <p>Research focuses on Edge AI, computer vision, and deep learning with an emphasis on optimization theory and accelerator design. Core areas include model compression, low-rank tensor factorization, structured sparsity, quantization, and knowledge distillation for reducing model complexity under resource constraints. Hardware–software co-design leverages high-level synthesis (HLS), FPGA-based accelerators, and custom IP generation to optimize latency, throughput, and energy efficiency. The work integrates principles from approximation theory, information theory, and neural architecture search to advance scalable, real-time inference on embedded and edge computing platforms.</p>
+                            <h3>Hello, I'm Om Karthik Reddy</h3>
+                            <p>I am a recent graduate with a Master of Science in Industrial Engineering from Northeastern University and a Graduate Certificate in Supply Chain Management. I am passionate about leveraging my skills in Lean Six Sigma, data analysis, and process optimization to drive efficiency and sustainability in supply chains. My experience spans across supplier quality engineering, manufacturing, and process improvement in the automotive and industrial sectors. </p>
 
 
                             <div className="personal-info">
                                 <div className="info-item">
                                     <MapPin size={16} />
-                                    <span>Chicago, IL</span>
-                                </div>
-                                <div className="info-item">
-                                    <GraduationCap size={16} />
-                                    <span>PhD Computer Science & Engineering (Expected 2028)</span>
-                                </div>
-                                <div className="info-item">
-                                    <Calendar size={16} />
-                                    <span>2+ years research experience</span>
+                                    <span>Detroit, MI</span>
                                 </div>
                             </div>
                         </div>
 
                         <div className="profile-image">
-                            <img src={profilePic} alt="Sai Manohar Vemuri" />
+                            <img src={profilePic} alt="Om Karthik Reddy" />
                         </div>
                     </div>
 
@@ -335,7 +299,11 @@ const About = () => {
                                             <span className="timeline-year">{item.year}</span>
                                         </div>
                                         <div className="timeline-institution">{item.institution}</div>
-                                        <p className="timeline-description">{item.description}</p>
+                                        <ul className="timeline-description">
+                                            {item.description.map((point, i) => (
+                                                <li key={i}>{point}</li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
                             ))}
@@ -406,7 +374,7 @@ const About = () => {
                         {loading && (
                             <div style={{ textAlign: 'center', padding: '2rem 0' }}>
                                 <Loader2 size={24} className="animate-spin" style={{ margin: '0 auto 1rem' }} />
-                                <p>Loading projects from GitHub...</p>
+                                <p>Loading projects...</p>
                             </div>
                         )}
 
@@ -424,7 +392,7 @@ const About = () => {
                                     Error loading projects: {error}
                                 </p>
                                 <button
-                                    onClick={fetchProjectsData}
+                                    onClick={() => {}}
                                     style={{
                                         padding: '0.5rem 1rem',
                                         backgroundColor: '#ef4444',
@@ -460,7 +428,7 @@ const About = () => {
                                             </div>
 
                                             <p className="project-description">{project.description}</p>
-
+                                            {/*
                                             {!project.error && (
                                                 <div className="project-links">
                                                     {project.cloneUrl && (
@@ -504,54 +472,7 @@ const About = () => {
                                                     )}
                                                 </div>
                                             )}
-
-                                            <div className="project-meta">
-                                                {project.languages.length > 0 && (
-                                                    <div className="project-languages">
-                                                        <span style={{ fontWeight: 'bold', marginRight: '0.5rem' }}>Languages:</span>
-                                                        {project.languages.slice(0, 3).map((lang, index) => (
-                                                            <span key={index} style={{ marginRight: '0.5rem' }}>
-                                                                <span
-                                                                    style={{
-                                                                        display: 'inline-block',
-                                                                        width: '12px',
-                                                                        height: '12px',
-                                                                        borderRadius: '50%',
-                                                                        backgroundColor: getLanguageColor(lang.name),
-                                                                        marginRight: '4px',
-                                                                        verticalAlign: 'middle'
-                                                                    }}
-                                                                ></span>
-                                                                {lang.name}: {lang.percentage}%
-                                                                {index < Math.min(project.languages.length, 3) - 1 && ', '}
-                                                            </span>
-                                                        ))}
-                                                        {project.languages.length > 3 && (
-                                                            <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>
-                                                                +{project.languages.length - 3} more
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                )}
-
-                                                <div style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'space-between',
-                                                    alignItems: 'center',
-                                                    marginTop: '1rem',
-                                                    fontSize: '0.875rem',
-                                                    color: '#6b7280'
-                                                }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                                                        <Star size={14} />
-                                                        <span>{project.stars} Stars</span>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                                                        <Calendar size={14} />
-                                                        <span>Updated {project.updatedDate}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            */}
                                         </div>
                                     </div>
                                 ))}
@@ -560,38 +481,10 @@ const About = () => {
 
                         {!loading && !error && projectsData.length === 0 && (
                             <div style={{ textAlign: 'center', padding: '2rem 0' }}>
-                                <p>No projects found. Please check your repository names and GitHub username.</p>
+                                <p>No projects found.</p>
                             </div>
                         )}
                     </div>
-
-                    {/* Contact Info */}
-                    <div className="contact-section">
-                        <h3 className="subsection-title">Let's Connect</h3>
-                        <div className="contact-info">
-                            <div className="contact-item">
-                                <a href="mailto:vemurimanohar6642@gmail.com" target="_blank" rel="noopener noreferrer">
-                                    📧 vemurimanohar6642@gmail.com
-                                </a>
-                            </div>
-                            <div className="contact-item">
-                                <a href="tel:+13126875356">
-                                    📱 (312) 687-5356
-                                </a>
-                            </div>
-                            <div className="contact-item">
-                                <a href="https://www.linkedin.com/in/vemuri02" target="_blank" rel="noopener noreferrer">
-                                    🔗 linkedin.com/in/vemuri02
-                                </a>
-                            </div>
-                            <div className="contact-item">
-                                <a href="https://github.com/vemuri02" target="_blank" rel="noopener noreferrer">
-                                    💻 github.com/vemuri02
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>

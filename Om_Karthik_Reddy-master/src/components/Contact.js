@@ -1,13 +1,13 @@
 // src/components/Contact.js
 import React, { useState } from 'react';
-import { Mail, MapPin, Calendar, Send, Github, Linkedin, Twitter, ExternalLink, Clock, MessageSquare } from 'lucide-react';
+import { Mail, MapPin, Calendar, Send, Github, Linkedin, Clock } from 'lucide-react';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        subject: '',
-        message: ''
+        subject: 'research-collaboration',
+        message: '' // Default message is now empty
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -15,71 +15,35 @@ const Contact = () => {
         {
             icon: <Mail size={20} />,
             label: 'Email',
-            value: 'svemuri6@hawk.illinoistech.edu',
-            link: 'mailto:svemuri6@hawk.illinoistech.edu'
+            value: 'omkarthik1307@gmail.com',
+            link: 'mailto:omkarthik1307@gmail.com'
         },
         {
             icon: <MapPin size={20} />,
             label: 'Location',
-            value: 'DA Lab, Siegel Hall, Illinois Institute of Technology, Chicago, IL',
+            value: 'Detroit, USA',
             link: null
         },
         {
             icon: <Calendar size={20} />,
             label: 'Availability',
-            value: 'Flexible / Research Lab',
+            value: 'Flexible',
             link: null
         }
-
     ];
 
     const socialLinks = [
         {
             platform: 'GitHub',
             icon: <Github size={20} />,
-            url: 'https://github.com/vemuri02',
-            handle: '@vemuri02'
+            url: 'https://github.com/omkarthikreddy',
+            handle: '@omkarthikreddy'
         },
         {
             platform: 'LinkedIn',
             icon: <Linkedin size={20} />,
-            url: 'https://linkedin.com/in/vemuri02',
-            handle: '/in/vemuri02'
-        },
-        // {
-        //     platform: 'Twitter',
-        //     icon: <Twitter size={20} />,
-        //     url: 'https://twitter.com/yourusername',
-        //     handle: '@yourusername'
-        // },
-        {
-            platform: 'Google Scholar',
-            icon: <ExternalLink size={20} />,
-            url: 'https://scholar.google.com/citations?user=XLwLD0IAAAAJ&hl=en',
-            // handle: 'Publications'
-        }
-    ];
-
-    const collaborationTypes = [
-        {
-            title: 'Research Collaboration',
-            description: 'Interested in joint research projects in deep learning or edge AI',
-            icon: <MessageSquare size={24} />
-        },
-        {
-            title: 'Speaking Opportunities',
-            description: 'Available for talks, workshops, and conference presentations',
-            icon: <ExternalLink size={24} />
-        },
-        {
-            title: 'Industry Partnerships',
-            description: 'Open to internships and research partnerships with tech companies',
-            icon: <Clock size={24} />
-        },
-        {
-            title: 'Mentoring',
-            description: 'Happy to mentor undergraduate students in ML/AI research',
-            icon: <MessageSquare size={24} />
+            url: 'https://www.linkedin.com/in/om-karthik-reddy-v/',
+            handle: '/in/om-karthik-reddy-v/'
         }
     ];
 
@@ -94,18 +58,8 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-
-        // Simulate form submission
         await new Promise(resolve => setTimeout(resolve, 1000));
-
-        // Reset form
-        setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-        });
-
+        setFormData({ name: '', email: '', subject: 'research-collaboration', message: '' });
         setIsSubmitting(false);
         alert('Thank you for your message! I\'ll get back to you soon.');
     };
@@ -163,9 +117,9 @@ const Contact = () => {
                                 >
                                     <option value="">Select a subject</option>
                                     <option value="research-collaboration">Research Collaboration</option>
+                                    <option value="interview-inquiry">Interview Inquiry</option>
                                     <option value="speaking-opportunity">Speaking Opportunity</option>
                                     <option value="industry-partnership">Industry Partnership</option>
-                                    <option value="mentoring">Mentoring Request</option>
                                     <option value="general-inquiry">General Inquiry</option>
                                     <option value="other">Other</option>
                                 </select>
@@ -257,47 +211,6 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Collaboration Opportunities */}
-                {/* <div className="collaboration-section">
-                    <h3 className="subsection-title">Collaboration Opportunities</h3>
-                    <div className="collaboration-grid">
-                        {collaborationTypes.map((collab, index) => (
-                            <div key={index} className="collaboration-card">
-                                <div className="collab-icon">{collab.icon}</div>
-                                <div className="collab-content">
-                                    <h4 className="collab-title">{collab.title}</h4>
-                                    <p className="collab-description">{collab.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div> */}
-
-
-                {/* FAQ Section */}
-                <div className="faq-section">
-                    <h3 className="subsection-title">Frequently Asked Questions</h3>
-                    <div className="faq-grid">
-                        <div className="faq-item">
-                            <h4>Are you available for research collaborations?</h4>
-                            <p>Yes! I'm always interested in collaborative projects in deep learning, edge AI, and hardware-aware optimization. Please feel free to reach out with your ideas.</p>
-                        </div>
-                        <div className="faq-item">
-                            <h4>Can we co-author papers or projects together?</h4>
-                            <p>Definitely. I'm open to joint publications, workshop submissions, and research projects that align with my PhD work.</p>
-                        </div>
-                        <div className="faq-item">
-                            <h4>Do you attend academic conferences?</h4>
-                            <p>Yes. I regularly attend conferences in AI/ML and embedded systems, and I’m available for research presentations and poster sessions.</p>
-                        </div>
-                        <div className="faq-item">
-                            <h4>Are you interested in academic networking?</h4>
-                            <p>Absolutely. I value connecting with fellow researchers, labs, and professors to explore potential collaborations and knowledge sharing.</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
     );

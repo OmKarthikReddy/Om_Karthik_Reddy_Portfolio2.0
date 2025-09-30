@@ -2,28 +2,28 @@ import React from 'react';
 import { ChevronDown, Brain, Code, BookOpen, Users } from 'lucide-react';
 
 const Home = () => {
-    const highlights = [
-        {
-            icon: <Brain className="highlight-icon" />,
-            title: "Deep Learning Research",
-            description: "Focus on neural network optimization and novel architectures"
-        },
-        {
-            icon: <Code className="highlight-icon" />,
-            title: "Edge AI Development",
-            description: "Deploying AI models on resource-constrained devices"
-        },
-        {
-            icon: <BookOpen className="highlight-icon" />,
-            title: "Technical Writing",
-            description: "Sharing insights through blog posts and research papers"
-        },
-        {
-            icon: <Users className="highlight-icon" />,
-            title: "Teaching & Mentoring",
-            description: "TA experience in machine learning and AI courses"
-        }
-    ];
+    // const highlights = [
+    //     {
+    //         icon: <Brain className="highlight-icon" />,
+    //         title: "Deep Learning Research",
+    //         description: "Focus on neural network optimization and novel architectures"
+    //     },
+    //     {
+    //         icon: <Code className="highlight-icon" />,
+    //         title: "Edge AI Development",
+    //         description: "Deploying AI models on resource-constrained devices"
+    //     },
+    //     {
+    //         icon: <BookOpen className="highlight-icon" />,
+    //         title: "Technical Writing",
+    //         description: "Sharing insights through blog posts and research papers"
+    //     },
+    //     {
+    //         icon: <Users className="highlight-icon" />,
+    //         title: "Teaching & Mentoring",
+    //         description: "TA experience in machine learning and AI courses"
+    //     }
+    // ];
 
     return (
         <section className="home-section">
@@ -45,7 +45,7 @@ const Home = () => {
                                 View My Research
                             </button> */}
                             <a
-                                href="/\Resume_Om_Karthik_S.pdf"
+                                href="/Resume_Om_Karthik_Q.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn-secondary"
@@ -67,7 +67,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
+            {/*
             <div className="highlights-section">
                 <div className="container">
                     <h3 className="section-title">What I Do</h3>
@@ -82,12 +82,12 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
+            */}
             <div className="container">
                 <div className="scroll-indicator">
                     <ChevronDown className="bounce" />
                 </div>
-            </div> 
+            </div>
         </section>
     );
 };

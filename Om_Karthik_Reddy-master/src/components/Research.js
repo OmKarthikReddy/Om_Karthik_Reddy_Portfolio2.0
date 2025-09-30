@@ -24,12 +24,12 @@ const Research = () => {
         const fileName = key.replace('./', '');
         keti_data[fileName] = req2(key);
     });
-
+    /*
     const projects = [
-        
-        
+
+
         {
-            
+
             id: "CB_DistillGrad",
             title: "Model–Accelerator Co-Design for Real-Time Road Surface Condition Estimation Using Camera and LiDAR Fusion",
             category: "edge-ai",
@@ -76,28 +76,19 @@ const Research = () => {
         },
 
     ];
+    */
 
     const publications = [
         {
-            title: 'CB-DistillGrad: A Class-Balanced Knowledge Distillation Loss for Long-Tailed Visual Recognition',
-            authors: 'Vemuri, S.M.; Gundrapally, A.; Kim, T.; Kim, J. (Senior Member, IEEE); Choi, K. (Senior Member, IEEE)',
-            venue: "IEEE Access, 2025",
-            type: "Journal Paper",
-            link: "https://arxiv.org/example"
-        },
-        {
-            title: 'Hardware Accelerator Design by Using RT-Level Power Optimization Techniques on FPGA for Future AI Mobile Applications',
-            authors: 'Gundrapally, A.; Shah, Y.A.; Vemuri, S.M.; Choi, K.',
-            venue: 'Electronics, vol. 14, no. 16, 2025',
-            type: "Journal Paper",
-            link: "https://doi.org/10.3390/electronics14163317"
+            title: 'Integrating Green Lean Six Sigma and Industry 4.0 for Sustainable Supply Chains',
+            authors: 'Om Karthik Reddy Valipireddy',
+            venue: "In submission process",
+            type: "Review Paper",
+            link: "/Om_Karthik_Review_Paper_Draft.pdf",
+            description: "This systematic literature review investigates the integration of Green Lean Six Sigma (GLSS) with Industry 4.0 (I4.0) to enhance sustainable supply chain management (SSCM). Using the PRISMA protocol, this review maps the academic landscape on synergies between GLSS and key I4.0 enablers. Our analysis reveals that emerging 'LSS 4.0' frameworks are predominantly manufacturing-centric. The primary contribution of this paper is to address this limitation by integrating findings from the literature into a conceptual model for the entire supply chain."
         }
     ];
 
-    const filteredProjects = selectedFilter === 'all'
-        ? projects
-        : projects.filter(project => project.category === selectedFilter);
-        
     if (selectedProjectId) {
         return (
             <ResearchDetail
@@ -118,113 +109,6 @@ const Research = () => {
                     </p>
                 </div>
 
-                {/* Filter Buttons */}
-                <div className="filter-buttons">
-                    <button
-                        onClick={() => setSelectedFilter('all')}
-                        className={selectedFilter === 'all' ? 'active' : ''}
-                    >
-                        All Projects
-                    </button>
-                    <button
-                        onClick={() => setSelectedFilter('edge-ai')}
-                        className={selectedFilter === 'edge-ai' ? 'active' : ''}
-                    >
-                        Edge AI
-                    </button>
-                    <button
-                        onClick={() => setSelectedFilter('optimization')}
-                        className={selectedFilter === 'optimization' ? 'active' : ''}
-                    >
-                        Optimization
-                    </button>
-                    {/* <button
-                        onClick={() => setSelectedFilter('federated-learning')}
-                        className={selectedFilter === 'federated-learning' ? 'active' : ''}
-                    >
-                        Federated Learning
-                    </button> */}
-                </div>
-
-                {/* Research Projects */}
-                <div className="projects-grid">
-                    {filteredProjects.map(project => (
-                        <div key={project.id}
-                            className="project-card"
-                            style={{ cursor: 'pointer' }}
-                            onClick={() => setSelectedProjectId(project.id)}
-                        >
-                            <div className="project-image">
-                                <img src={project.image} alt={project.title} />
-                                <div className="project-status">
-                                    <span className={`status-badge ${project.status}`}>
-                                        {project.status === 'published' ? 'Completed' : 'On Going'}
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="project-content">
-                                <h3
-                                    className="project-title"
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setSelectedProjectId(project.id)}
-                                >
-                                    {project.title}
-                                </h3>
-
-                                <p className="project-description">{project.description}</p>
-
-                                <div className="project-metrics">
-                                    {Object.entries(project.metrics).map(([key, value]) => (
-                                        <div key={key} className="metric">
-                                            <span className="metric-label">{key.replace('_', ' ')}:</span>
-                                            <span className="metric-value">{value}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className="project-tech">
-                                    {project.technologies.map(tech => (
-                                        <span key={tech} className="tech-tag">{tech}</span>
-                                    ))}
-                                </div>
-
-                                <div className="project-meta">
-                                    <div className="collaborators">
-                                        <Users size={20} />
-                                        <span>{project.collaborators.join(', ')}</span>
-                                    </div>
-                                    <div className="venue">
-                                        <Calendar size={16} />
-                                        <span>{project.venue}</span>
-                                    </div>
-                                </div>
-
-                                <div className="project-links">
-                                    {project.paper && (
-                                        <a href={project.paper} target="_blank" rel="noopener noreferrer" className="link-btn">
-                                            <BookOpen size={16} />
-                                            Paper
-                                        </a>
-                                    )}
-                                    {project.code && (
-                                        <a href={project.code} target="_blank" rel="noopener noreferrer" className="link-btn">
-                                            <Github size={16} />
-                                            Code
-                                        </a>
-                                    )}
-                                    {project.demo && (
-                                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="link-btn">
-                                            <ExternalLink size={16} />
-                                            Demo
-                                        </a>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
                 {/* Publications Section */}
                 <div className="publications-section">
                     <h3 className="subsection-title">Recent Publications</h3>
@@ -235,6 +119,7 @@ const Research = () => {
                                     <h4 className="publication-title">{pub.title}</h4>
                                     <p className="publication-authors">{pub.authors}</p>
                                     <p className="publication-venue">{pub.venue}</p>
+                                    <p>{pub.description}</p>
                                     <div className="publication-meta">
                                         <span className="publication-type">{pub.type}</span>
                                         {/* <div className="citation-count">

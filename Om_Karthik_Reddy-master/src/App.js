@@ -16,9 +16,7 @@ function App() {
             case 'home':
                 return <Home />;
             case 'about':
-                return <About
-                    setActiveSection={setActiveSection}
-                />;
+                return <About />;
             case 'research':
                 return <Research />;
             case 'blog':
@@ -32,7 +30,18 @@ function App() {
         }
     };
 
-    // Scroll to top whenever the section changes
+    // This hook updates the page title in the browser tab when the activeSection state changes.
+    useEffect(() => {
+        if (activeSection === 'home') {
+            document.title = 'Om Karthik Reddy - Portfolio';
+        } else {
+            // Capitalizes the first letter of the section name for the title
+            const title = activeSection.charAt(0).toUpperCase() + activeSection.slice(1);
+            document.title = `Om Karthik Reddy - ${title}`;
+        }
+    }, [activeSection]);
+
+    // This hook scrolls the page to the top whenever the section changes.
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [activeSection]);
