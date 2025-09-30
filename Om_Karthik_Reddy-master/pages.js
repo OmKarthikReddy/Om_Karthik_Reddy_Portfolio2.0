@@ -5,7 +5,7 @@ const repoURL = "https://github.com/omkarthikreddy/om_karthik_reddy_portfolio2.0
 ghpages.publish(
   pathname,
   {
-    branch: "master",
+    branch: "gh-pages", // Changed from "master"
     repo: repoURL,
   },
   (err) => {
